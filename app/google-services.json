@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "545849065430",
+    "firebase_url": "https://helmet-d508c-default-rtdb.firebaseio.com",
+    "project_id": "helmet-d508c",
+    "storage_bucket": "helmet-d508c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545849065430:android:80ec4c94addafe32752e77",
+        "android_client_info": {
+          "package_name": "com.example.shelt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlJgoKtQ_HJSvXWxlu86pfBTDXmxVlAYE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.SHELT" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:fontFamily">@font/raleway</item>
+        <item name="fontFamily">@font/raleway</item>
+        <item name="materialCardViewStyle">@style/SheltCard</item>
+    </style>
+
+    <style name="Theme.SHELT" parent="Base.Theme.SHELT" />
+
+    <style name="SheltCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="android:padding">16dp</item>
+        <item name="cardCornerRadius">16dp</item>
+    </style>
+</resources>
