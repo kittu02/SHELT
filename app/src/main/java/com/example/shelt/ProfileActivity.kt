@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,5 +21,3 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 }
-
-

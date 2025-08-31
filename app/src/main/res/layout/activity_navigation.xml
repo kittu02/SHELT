@@ -6,6 +6,17 @@
     android:background="?android:colorBackground"
     android:padding="24dp">
 
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Back"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="?android:textColorPrimary" />
+
     <TextView
         android:id="@+id/tvNavigationTitle"
         android:layout_width="wrap_content"
@@ -85,7 +96,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDestination"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -114,7 +125,4 @@
                 app:cornerRadius="16dp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

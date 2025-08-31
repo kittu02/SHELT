@@ -3,6 +3,7 @@ package com.example.shelt.data
 import android.content.SharedPreferences
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.firestore
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,8 @@ class FirebaseHelmetRepository(private val prefs: SharedPreferences) : HelmetRep
 
     override fun observePiStatus(): Flow<Boolean?> = callbackFlow {
         val reg = helmetDoc().addSnapshotListener { snap, _ ->
-            val active = snap?.get("DeviceStatus.PiStatus") as? String
+            // This still assumes PiStatus is nested under DeviceStatus, based on your previous image
+            val active = snap?.getString("DeviceStatus.PiStatus")
             trySend(active?.equals("active", ignoreCase = true))
         }
         awaitClose { reg.remove() }
@@ -24,7 +26,8 @@ class FirebaseHelmetRepository(private val prefs: SharedPreferences) : HelmetRep
 
     override fun observeCrashStatus(): Flow<String?> = callbackFlow {
         val reg = helmetDoc().addSnapshotListener { snap, _ ->
-            val status = snap?.get("DeviceStatus.CrashStatus") as? String
+            // This now correctly accesses CrashStatus as a direct, top-level field
+            val status = snap?.getString("CrashStatus")
             trySend(status)
         }
         awaitClose { reg.remove() }
@@ -38,7 +41,7 @@ class FirebaseHelmetRepository(private val prefs: SharedPreferences) : HelmetRep
                 "timestamp" to System.currentTimeMillis()
             )
         )
-        helmetDoc().set(data, com.google.firebase.firestore.SetOptions.merge())
+        helmetDoc().set(data, SetOptions.merge())
     }
 
     override suspend fun setSearchedLocation(lat: Double, lng: Double) {
@@ -48,8 +51,6 @@ class FirebaseHelmetRepository(private val prefs: SharedPreferences) : HelmetRep
                 "longitude" to lng
             )
         )
-        helmetDoc().set(data, com.google.firebase.firestore.SetOptions.merge())
+        helmetDoc().set(data, SetOptions.merge())
     }
 }
-
-

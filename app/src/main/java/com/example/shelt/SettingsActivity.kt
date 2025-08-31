@@ -6,7 +6,7 @@ import androidx.activity.enableEdgeToEdge
 import android.widget.Switch
 import com.google.android.material.switchmaterial.SwitchMaterial
 
-class SettingsActivity : ComponentActivity() {
+class SettingsActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,5 +19,3 @@ class SettingsActivity : ComponentActivity() {
         }
     }
 }
-
-

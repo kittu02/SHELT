@@ -1,44 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="green">#2E7D32</color>
-    <color name="red">#C62828</color>
-    
-    <!-- Primary colors -->
-    <color name="primary">#1976D2</color>
-    <color name="primary_dark">#1565C0</color>
+    <!-- Primary Colors -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
     <color name="primary_light">#BBDEFB</color>
     
-    <!-- Accent colors -->
-    <color name="accent">#FF9800</color>
-    <color name="accent_dark">#F57C00</color>
+    <!-- Secondary Colors -->
+    <color name="secondary">#03A9F4</color>
+    <color name="secondary_dark">#0288D1</color>
+    <color name="secondary_light">#B3E5FC</color>
     
-    <!-- Secondary colors -->
-    <color name="secondary">#424242</color>
-    <color name="secondary_light">#6D6D6D</color>
+    <!-- Accent Colors -->
+    <color name="accent">#00BCD4</color>
+    <color name="accent_dark">#0097A7</color>
+    <color name="accent_light">#B2EBF2</color>
     
-    <!-- Background colors -->
-    <color name="background">#FAFAFA</color>
-    <color name="surface">#FFFFFF</color>
+    <!-- Status Colors -->
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
+    <color name="yellow">#FFC107</color>
+    <color name="orange">#FF9800</color>
     
-    <!-- Status colors -->
-    <color name="error">#D32F2F</color>
-    <color name="success">#388E3C</color>
-    <color name="warning">#F57C00</color>
-    <color name="info">#1976D2</color>
-    
-    <!-- Additional UI colors -->
-    <color name="divider">#E0E0E0</color>
-    <color name="divider_dark">#424242</color>
-    <color name="ripple">#1F000000</color>
-    <color name="ripple_dark">#33FFFFFF</color>
-    
-    <!-- Text colors -->
+    <!-- Text Colors -->
     <color name="text_primary">#212121</color>
-    <color name="text_primary_dark">#FFFFFF</color>
     <color name="text_secondary">#757575</color>
-    <color name="text_secondary_dark">#B3FFFFFF</color>
-    <color name="text_disabled">#BDBDBD</color>
-    <color name="text_disabled_dark">#66FFFFFF</color>
+    <color name="text_hint">#BDBDBD</color>
+    <color name="text_light">#FFFFFF</color>
+    <color name="text_dark">#000000</color>
+    
+    <!-- Background Colors -->
+    <color name="background_light">#FAFAFA</color>
+    <color name="background_dark">#121212</color>
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_dark">#1E1E1E</color>
+    
+    <!-- Common Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="divider">#1F000000</color>
+    
+    <!-- Status Bar Colors -->
+    <color name="status_bar_light">#1A000000</color>
+    <color name="status_bar_dark">#1AFFFFFF</color>
+    
+    <!-- Button States -->
+    <color name="button_pressed">#1F000000</color>
+    <color name="button_focused">#1A000000</color>
+    <color name="button_disabled">#1F000000</color>
+    
+    <!-- Emergency Colors -->
+    <color name="emergency_red">#F44336</color>
+    <color name="emergency_dark_red">#D32F2F</color>
+    
+    <!-- Map Colors -->
+    <color name="map_route">#2196F3</color>
+    <color name="map_marker">#F44336</color>
+    <color name="map_current_location">#4CAF50</color>
+    
+    <!-- Notification Colors -->
+    <color name="notification_success">#4CAF50</color>
+    <color name="notification_warning">#FFC107</color>
+    <color name="notification_error">#F44336</color>
+    <color name="notification_info">#2196F3</color>
 </resources>

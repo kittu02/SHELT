@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.example.shelt.data.FirebaseHelmetRepository
+import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -19,12 +20,12 @@ import kotlinx.coroutines.launch
 class CrashMonitorService : Service() {
     private val scope = CoroutineScope(Dispatchers.IO + Job())
     private val repo by lazy { FirebaseHelmetRepository(getSharedPreferences("user", MODE_PRIVATE)) }
-    
+
     companion object {
         private const val CHANNEL_ID = "crash_monitor"
         private const val NOTIFICATION_ID = 1002
         private const val MONITOR_INTERVAL = 3000L // Check every 3 seconds
-        
+
         fun startService(context: android.content.Context) {
             val intent = Intent(context, CrashMonitorService::class.java)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -33,7 +34,7 @@ class CrashMonitorService : Service() {
                 context.startService(intent)
             }
         }
-        
+
         fun stopService(context: android.content.Context) {
             context.stopService(Intent(context, CrashMonitorService::class.java))
         }
@@ -76,10 +77,14 @@ class CrashMonitorService : Service() {
     }
 
     private fun startCrashMonitoring() {
+        // Initialize the location client here
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
         scope.launch {
             repo.observeCrashStatus().collectLatest { crashStatus ->
                 if (crashStatus == "crash") {
-                    EmergencyHelper.triggerEmergencyFromPrefs(this@CrashMonitorService)
+                    // Pass the newly created client to the helper function
+                    EmergencyHelper.triggerEmergencyFromPrefs(this@CrashMonitorService, fusedLocationClient)
                     // Update notification to show crash detected
                     updateNotification("CRASH DETECTED! Emergency contacts notified")
                 }
@@ -95,7 +100,7 @@ class CrashMonitorService : Service() {
             .setSmallIcon(android.R.drawable.ic_dialog_alert)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
-        
+
         val notificationManager = getSystemService(NotificationManager::class.java)
         notificationManager.notify(NOTIFICATION_ID, notification)
     }

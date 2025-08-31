@@ -6,7 +6,6 @@
     android:background="?android:colorBackground"
     android:padding="20dp">
 
-    <!-- Top container -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/topBar"
         android:layout_width="0dp"
@@ -68,7 +67,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Status circle -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardStatus"
         android:layout_width="240dp"
@@ -76,9 +74,12 @@
         android:layout_marginTop="40dp"
         app:cardCornerRadius="120dp"
         app:cardElevation="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintVertical_bias="0.119"
         app:strokeWidth="6dp">
 
         <TextView
@@ -92,17 +93,33 @@
             android:textStyle="bold" />
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Grid buttons -->
+    <TextView
+        android:id="@+id/tvCrashStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Crash Status: Safe"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+        android:textColor="?android:textColorPrimary"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardStatus"
+        app:layout_constraintVertical_bias="0.053" />
+
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/grid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         app:columnCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardStatus"
+        app:layout_constraintTop_toBottomOf="@+id/tvCrashStatus"
+        app:layout_constraintVertical_bias="0.202"
         app:rowCount="2">
 
         <com.google.android.material.button.MaterialButton
@@ -156,5 +173,3 @@
     </androidx.gridlayout.widget.GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

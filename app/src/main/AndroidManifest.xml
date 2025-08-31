@@ -15,6 +15,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
 
     <application
         android:allowBackup="true"
@@ -24,22 +26,64 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SHELT">
-        <activity android:name=".SettingsActivity" />
-        <activity android:name=".NavigationActivity" />
-        <activity android:name=".EmergencyActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".DashboardActivity" />
+        android:theme="@style/Theme.SHELT"
+        tools:targetApi="31">
+
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.SHELT.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".BackgroundLocationService" />
-        <service android:name=".CrashMonitorService" />
+
+        <!-- The duplicate <application> tag has been removed. -->
+
+        <service
+            android:name=".CrashMonitorForegroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.SHELT.NoActionBar" />
+
+        <activity
+            android:name=".EmergencyActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SHELT.NoActionBar" />
+
+        <activity
+            android:name=".NavigationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SHELT.NoActionBar" />
+
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SHELT.NoActionBar" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SHELT.NoActionBar" />
+
+        <service
+            android:name=".BackgroundLocationService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <service
+            android:name=".CrashMonitorService"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>
