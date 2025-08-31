@@ -16,6 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import android.view.View
 
 class DashboardActivity : AppCompatActivity() {
     private lateinit var repository: HelmetRepository
@@ -28,6 +29,9 @@ class DashboardActivity : AppCompatActivity() {
 
         repository = FirebaseHelmetRepository(getSharedPreferences("user", MODE_PRIVATE))
 
+        // Start crash monitoring service
+        CrashMonitorService.startService(this)
+
         val profileBtn = findViewById<ImageButton>(R.id.btnProfile)
         val statusCircle = findViewById<MaterialCardView>(R.id.cardStatus)
         val statusText = findViewById<TextView>(R.id.txtStatus)
@@ -36,16 +40,16 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
 
-        findViewById<android.view.View>(R.id.btnEmergency).setOnClickListener {
+        findViewById<View>(R.id.btnEmergency).setOnClickListener {
             startActivity(Intent(this, EmergencyActivity::class.java))
         }
-        findViewById<android.view.View>(R.id.btnNavigation).setOnClickListener {
+        findViewById<View>(R.id.btnNavigation).setOnClickListener {
             startActivity(Intent(this, NavigationActivity::class.java))
         }
-        findViewById<android.view.View>(R.id.btnSettings).setOnClickListener {
+        findViewById<View>(R.id.btnSettings).setOnClickListener {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
-        findViewById<android.view.View>(R.id.btnAbout).setOnClickListener {
+        findViewById<View>(R.id.btnAbout).setOnClickListener {
             AboutDialogFragment().show(supportFragmentManager, "about")
         }
 
@@ -54,7 +58,7 @@ class DashboardActivity : AppCompatActivity() {
                 val connected = active == true
                 statusText.text = if (connected) getString(R.string.connected) else getString(R.string.disconnected)
                 statusCircle.strokeColor = ContextCompat.getColor(this@DashboardActivity, if (connected) R.color.green else R.color.red)
-                findViewById<android.view.View>(R.id.btnNavigation).isEnabled = connected
+                findViewById<View>(R.id.btnNavigation).isEnabled = connected
             }
         }
 

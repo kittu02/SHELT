@@ -3,28 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="?android:colorBackground"
+    android:padding="20dp">
 
     <!-- Top container -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/topBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="16dp"
         android:layout_marginTop="24dp"
-        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="12dp">
+            android:layout_height="wrap_content"
+            android:padding="20dp">
 
             <ImageView
                 android:id="@+id/logo"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:contentDescription="@string/app_name"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -33,9 +36,10 @@
                 android:id="@+id/tvAppName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_marginStart="16dp"
                 android:text="SHELT"
-                android:textSize="20sp"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/tvSubtitle"
                 app:layout_constraintStart_toEndOf="@id/logo"
@@ -45,15 +49,18 @@
                 android:id="@+id/tvSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:text="Smart Helmet"
-                android:textSize="12sp"
+                android:textColor="?android:textColorSecondary"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="@id/tvAppName"
                 app:layout_constraintTop_toBottomOf="@id/tvAppName" />
 
             <ImageButton
                 android:id="@+id/btnProfile"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/profile"
                 android:src="@drawable/ic_launcher_foreground"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -62,19 +69,17 @@
     </com.google.android.material.card.MaterialCardView>
 
     <!-- Status circle -->
-
-    <!-- Grid buttons -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardStatus"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_marginTop="108dp"
-        app:cardCornerRadius="110dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="40dp"
+        app:cardCornerRadius="120dp"
+        app:cardElevation="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/topBar"
-        app:strokeWidth="4dp">
+        app:strokeWidth="6dp">
 
         <TextView
             android:id="@+id/txtStatus"
@@ -82,15 +87,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/disconnected"
-            android:textSize="18sp"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="20sp"
             android:textStyle="bold" />
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- Grid buttons -->
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/grid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         app:columnCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,38 +107,50 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnEmergency"
-            style="@style/Widget.Material3.Button"
+            style="@style/SheltButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"
             android:text="@string/emergency"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNavigation"
-            style="@style/Widget.Material3.Button"
+            style="@style/SheltButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"
             android:enabled="false"
             android:text="@string/navigation"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSettings"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/SheltButtonOutlined"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"
             android:text="@string/settings"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAbout"
-            style="@style/Widget.Material3.Button.OutlinedButton"
+            style="@style/SheltButtonOutlined"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"
             android:text="@string/about"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
             app:layout_columnWeight="1"
             app:layout_rowWeight="1" />
     </androidx.gridlayout.widget.GridLayout>

@@ -1,8 +1,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.SHELT" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Default font family -->
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/poppins</item>
+        
+        <!-- Color scheme -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorSecondaryVariant">@color/accent_dark</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorSurface">@color/secondary</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnBackground">@color/white</item>
+        
+        <!-- Component styles -->
+        <item name="materialCardViewStyle">@style/SheltCard</item>
+        <item name="materialButtonStyle">@style/SheltButton</item>
+        <item name="textInputStyle">@style/SheltTextInput</item>
+        
+        <!-- Typography -->
+        <item name="textAppearanceHeadlineLarge">@style/SheltTextAppearance.HeadlineLarge</item>
+        <item name="textAppearanceHeadlineMedium">@style/SheltTextAppearance.HeadlineMedium</item>
+        <item name="textAppearanceTitleLarge">@style/SheltTextAppearance.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/SheltTextAppearance.TitleMedium</item>
+        <item name="textAppearanceBodyLarge">@style/SheltTextAppearance.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/SheltTextAppearance.BodyMedium</item>
     </style>
+
     <style name="Theme.SHELT" parent="Base.Theme.SHELT" />
 </resources>

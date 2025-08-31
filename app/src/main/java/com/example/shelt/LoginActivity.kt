@@ -16,6 +16,7 @@ class LoginActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ThemeUtils.applyThemeFromPrefs(this)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
 

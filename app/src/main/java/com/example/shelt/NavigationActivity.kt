@@ -39,7 +39,6 @@ class NavigationActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -48,6 +47,9 @@ class NavigationActivity : AppCompatActivity() {
         tvCurrent = findViewById(R.id.tvCurrent)
         val etDestination = findViewById<EditText>(R.id.etDestination)
 
+        // Start crash monitoring service
+        CrashMonitorService.startService(this)
+
         findViewById<View>(R.id.btnGo).setOnClickListener {
             val dest = etDestination.text.toString()
             val geo = Geocoder(this, Locale.getDefault())
@@ -55,7 +57,7 @@ class NavigationActivity : AppCompatActivity() {
             if (!addrs.isNullOrEmpty()) {
                 scope.launch { repo.setSearchedLocation(addrs[0].latitude, addrs[0].longitude) }
             }
-            startContinuousLocation()
+            startBackgroundLocationService()
         }
 
         // Initial one-time read if permission already granted
@@ -79,25 +81,30 @@ class NavigationActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION), requestCode)
     }
 
-    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
-    private fun startContinuousLocation() {
+    private fun startBackgroundLocationService() {
         if (!hasLocation()) {
-            requestLocationPermission(); return
+            requestLocationPermission()
+            return
         }
-        if (started) return
-        started = true
-        val request = LocationRequest.Builder(5000)
-            .setMinUpdateIntervalMillis(5000)
-            .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
-            .build()
-        locationClient.requestLocationUpdates(request, callback, mainLooper)
+        
+        // Start background service for continuous location updates
+        BackgroundLocationService.startService(this)
+        
+        // Also start local updates for immediate UI feedback
+        if (!started) {
+            started = true
+            val request = LocationRequest.Builder(5000)
+                .setMinUpdateIntervalMillis(5000)
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .build()
+            locationClient.requestLocationUpdates(request, callback, mainLooper)
+        }
     }
 
-    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == this.requestCode && grantResults.isNotEmpty() && grantResults.any { it == PackageManager.PERMISSION_GRANTED }) {
-            startContinuousLocation()
+            startBackgroundLocationService()
         }
     }
 

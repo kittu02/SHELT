@@ -2,10 +2,10 @@ package com.example.shelt
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.ListView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.google.android.material.textfield.TextInputEditText
 
 class EmergencyActivity : ComponentActivity() {
     private lateinit var adapter: ArrayAdapter<String>
@@ -24,11 +24,11 @@ class EmergencyActivity : ComponentActivity() {
         list.choiceMode = ListView.CHOICE_MODE_SINGLE
 
         findViewById<android.view.View>(R.id.btnAdd).setOnClickListener {
-            val input = findViewById<EditText>(R.id.etNumber).text.toString()
+            val input = findViewById<TextInputEditText>(R.id.etNumber).text.toString()
             if (input.isNotBlank()) {
                 numbers.add(input)
                 adapter.notifyDataSetChanged()
-                findViewById<EditText>(R.id.etNumber).setText("")
+                findViewById<TextInputEditText>(R.id.etNumber).setText("")
                 prefs.edit().putStringSet("numbers", numbers.toSet()).apply()
             }
         }
